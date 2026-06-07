@@ -1,0 +1,1 @@
+I used AI to help me better understand the calculator assignment requirements and think through the logic I needed to implement. It was helpful for explaining what the different parts of the program were responsible for and clarifying what some of the TODO sections were asking me to do

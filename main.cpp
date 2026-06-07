@@ -1,6 +1,6 @@
 /*
- * Author: TODO ENTER YOUR NAME HERE
- * Description: TODO BRIEF DESCRIPTION OF ASSIGNMENT HERE
+ * Author: Aleena Calvert
+ * Description: Runs a terminal calculator and prints a history of answers.
  */
 
 #include <iostream>
@@ -59,10 +59,19 @@ void print_history_header() {
 	std::cout << "History of computed values:" << std::endl;
 }
 
+/*
+ * Function: print_history
+ * Description: Prints the history of computed values.
+ */
+void print_history(double history[], int history_size) {
+	for (int i = 0; i < history_size; i++) {
+		std::cout << history[i] << std::endl;
+	}
+}
+
 int main() {
-	// TODO Create array to represent history of at most 100 computed values
-	// (and a separate variable to keep track of the number of elements that
-	// have been added to it so far)
+	double history[100];
+	int history_size = 0;
 
 	std::string go_again;
 	do {
@@ -78,9 +87,8 @@ int main() {
 			// Print value
 			std::cout << value << std::endl;
 
-			// TODO Append value to array containing history of computed values
-			// and increment the array's corresponding size variable
-
+			history[history_size] = value;
+			history_size++;
 
 			go_again = prompt_for_retry();
 		} else {
@@ -94,7 +102,7 @@ int main() {
 	std::cout << std::endl;
 	print_history_header();
 
-	// TODO Print history of computed values (you should do this by calling
-	// another function here, which you'll need to define above this main()
-	// function)
+	print_history(history, history_size);
+
+	return 0;
 }

@@ -1,0 +1,10 @@
+Two things the AI did well:
+1. It helped me understand what the assignment was asking me to do and explained the purpose of the different files in the project.
+2. It helped me think through the logic behind parts of the program, such as storing calculation history and validating expressions.
+
+Two potential problems with the AI solution:
+1. Some suggestions included changes that were not necessary because the assignment only wanted the TODO sections completed.
+2. AI suggestions can still contain mistakes or not fully match the assignment requirements, so it is important to test everything yourself.
+
+Would I trust the AI solution?
+I would not completely trust an AI solution without checking it myself. AI can be useful for understanding concepts and helping with problem solving, but it is still important to compare its suggestions with the assignment requirements and test the program to make sure everything works correctly.

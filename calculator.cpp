@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 /*
  * THIS IS A HELPER FUNCTION. YOU AREN'T REQUIRED TO USE IT, AND YOU CAN
@@ -50,7 +51,13 @@ bool is_number(std::string str) {
 }
 
 
-// TODO Write other functions as you see fit.
+/*
+ * Function: is_valid_operator
+ * Description: Checks if a string is a valid operator.
+ */
+bool is_valid_operator(std::string str) {
+	return str == "+" || str == "-" || str == "*" || str == "/";
+}
 
 
 /*
@@ -71,14 +78,38 @@ bool is_number(std::string str) {
  * arithmetic expression for this assignment).
  */
 bool is_valid_expression(std::string expression) {
-	// TODO Complete this function. You may create other functions above and have
-	// this function call them, if you'd like (you probably should for the sake
-	// of the course's style guidelines)
-	
-	// TODO Remove the below return statement. It's a placeholder just to get
-	// the starter code to compile without warnings and run without undefined
-	// behavior.
-	return false;
+	std::stringstream ss(expression);
+	std::string current;
+	bool looking_for_number = true;
+	bool found_something = false;
+
+	if (expression.length() == 0) {
+		return false;
+	}
+
+	for (int i = 0; i < expression.length() - 1; i++) {
+		if (expression.at(i) == ' ' && expression.at(i + 1) == ' ') {
+			return false;
+		}
+	}
+
+	while (ss >> current) {
+		found_something = true;
+
+		if (looking_for_number) {
+			if (!is_number(current)) {
+				return false;
+			}
+		} else {
+			if (!is_valid_operator(current)) {
+				return false;
+			}
+		}
+
+		looking_for_number = !looking_for_number;
+	}
+
+	return found_something && !looking_for_number;
 }
 
 
@@ -101,12 +132,29 @@ bool is_valid_expression(std::string expression) {
  * complete the order-of-operations extra credit.
  */
 double compute_value(std::string expression) {
-	// TODO Complete this function. You may create other functions above and have
-	// this function call them, if you'd like (you probably should for the sake
-	// of the course's style guidelines)
+	std::stringstream ss(expression);
+	std::string current;
+	double answer = 0;
 
-	// TODO Remove the below return statement. It's a placeholder just to get
-	// the starter code to compile without warnings and run without undefined
-	// behavior.
-	return 0;
+	ss >> current;
+	answer = std::stod(current);
+
+	while (ss >> current) {
+		std::string operation = current;
+
+		ss >> current;
+		double next_number = std::stod(current);
+
+		if (operation == "+") {
+			answer += next_number;
+		} else if (operation == "-") {
+			answer -= next_number;
+		} else if (operation == "*") {
+			answer *= next_number;
+		} else if (operation == "/") {
+			answer /= next_number;
+		}
+	}
+
+	return answer;
 }
